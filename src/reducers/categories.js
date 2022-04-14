@@ -6,11 +6,6 @@ export default (categories = [], action) => {
 
             return action.payload;
 
-        case 'FETCH_ALL_PRODUCTS':
-
-
-            return categories.map((category) => (category._id === action.categoryId ? category.products = action.payload : category)); 
-
         default:
 
             return categories;

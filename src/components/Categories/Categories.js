@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 
 import { getCategories } from '../../actions/categories';
 
+import Products from '../Products/Products';
+
 const Categories = () => {
 
     const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const Categories = () => {
                 {categories.map((category) => (
                     <Grid key={category._id} itemxs={12} sm={12}>
                         <Category category={category}/>
+                        <Products products={category.products}/>
                     </Grid>
                 ))}
             </Grid>

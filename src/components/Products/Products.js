@@ -1,15 +1,15 @@
-import { CircularProgress, Grid } from "@material-ui/core";
-import React, {useEffect} from "react";
+import { Grid } from "@material-ui/core";
+import React from "react";
 
 import Product from './Product/Product';
 
 const Products = ({products}) => {
 
     return(
-        !products.length ? <CircularProgress/> : (
-            <Grid container alignItems="stretch" spacing={3}>
+        (
+            <Grid container alignItems="stretch" spacing={0}>
                 {products.map((product) => (
-                    <Grid key={product._id} itemxs={12} sm={12}>
+                    <Grid key={product._id} itemxs={3} sm={6} md={3}>
                         <Product product={product}/>
                     </Grid>
                 ))}
