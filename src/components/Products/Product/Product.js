@@ -1,11 +1,13 @@
 import React  from "react";
+import { useDispatch } from 'react-redux';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { AddProduct } from '../../../actions/shoppingCart';
 
 const Product = ({ product }) => {
 
+    const dispatch = useDispatch();
+
     const image = `${product.images_url[0]}`
-
-
 
     return (
         <Card sx={{ maxWidth: 330, minWidth:330, maxHeight: 560}}>
@@ -24,7 +26,9 @@ const Product = ({ product }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button onClick={()=>{}} color="primary">Add to Cart</Button>
+          <Button color="primary"onClick={() => {
+            dispatch(AddProduct(product))
+          }}>Add to Cart</Button>
         </CardActions>
       </Card>
     )

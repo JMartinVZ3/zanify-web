@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { AppBar, Typography, Box, Toolbar, IconButton, Button } from '@material-ui/core';
+import { Link } from "react-router-dom";
+
+import { AppBar, Typography, Box, Button } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -17,8 +19,10 @@ const Navbar = () => {
                 </Typography>
             </Box>
             <Box sx={{ mr: 5}}>
-                <Button variant="contained" disableElevation className={classes.containedButton}>Ver Carrito</Button>
-                <Button variant="outlined" color="inherit">Contactar Tienda</Button>
+                <Button variant="contained" disableElevation className={classes.containedButton}>
+                    <Link to="/shopping-cart">SNCISN</Link>
+                </Button>
+                <Button variant="outlined" color="inherit" onClick={() => {}}>Contactar Tienda</Button>
             </Box>
         </AppBar>
       </Box>

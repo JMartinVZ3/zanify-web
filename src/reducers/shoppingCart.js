@@ -4,7 +4,9 @@ export default (shoppingCart = [], action) => {
 
         case 'ADD_PRODUCT':
 
-            return action.payload;
+            console.log(shoppingCart);
+
+            return [...shoppingCart, action.payload];
 
         case 'DELETE_PRODUCT':
 

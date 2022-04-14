@@ -1,12 +1,22 @@
 
-
-export const AddProduct = () => async (dispatch) => {
+export const GetShoppingCartProducts = () => async (dispatch) => {
 
     try {
 
-        const { data } = await api.fetchCategories();
+        dispatch({ type: "GET_SHOPPING_CART_PRODUCTS"})
 
-        dispatch({ type: 'ADD_PRODUCT', payload: data?.categories});
+    } catch (error) {
+
+        console.log(error.message)
+
+    }
+}
+
+export const AddProduct = (product) => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: 'ADD_PRODUCT', payload: product});
 
     } catch (error) {
 
@@ -20,9 +30,7 @@ export const DeleteProduct = () => async (dispatch) => {
 
     try {
 
-        const { data } = await api.fetchCategories();
-
-        dispatch({ type: 'DELETE_PRODUCT', payload: data?.categories});
+        dispatch({ type: 'DELETE_PRODUCT'});
 
     } catch (error) {
 
@@ -36,9 +44,7 @@ export const SumProduct = () => async (dispatch) => {
 
     try {
 
-        const { data } = await api.fetchCategories();
-
-        dispatch({ type: 'SUM_PRODUCT', payload: data?.categories});
+        dispatch({ type: 'SUM_PRODUCT'});
 
     } catch (error) {
 
@@ -52,9 +58,7 @@ export const MinusProduct = () => async (dispatch) => {
 
     try {
 
-        const { data } = await api.fetchCategories();
-
-        dispatch({ type: 'MINUS_PRODUCT', payload: data?.categories});
+        dispatch({ type: 'MINUS_PRODUCT'});
 
     } catch (error) {
 

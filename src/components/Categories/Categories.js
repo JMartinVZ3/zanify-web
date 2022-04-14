@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from "@material-ui/core";
+import { CircularProgress, Grid, Box } from "@material-ui/core";
 import React, {useEffect} from "react";
 import { useDispatch } from 'react-redux';
 
@@ -24,6 +24,7 @@ const Categories = () => {
         !categories?.length ? <CircularProgress/> : (
             categories.map((category) => (
                 <>
+                    <Box sx={{ mt: 4}}/>
                     <Category category={category}/>
                     <Grid key={category._id} itemxs={12} sm={12}>
                         <Products products={category.products}/>
