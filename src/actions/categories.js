@@ -6,7 +6,7 @@ export const getCategories = () => async (dispatch) => {
 
         const { data } = await api.fetchCategories();
 
-        dispatch({ type: 'FETCH_ALL', payload: data});
+        dispatch({ type: 'FETCH_ALL_CATEGORIES', payload: data?.categories});
 
     } catch (error) {
 

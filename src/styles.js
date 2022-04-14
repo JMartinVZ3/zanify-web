@@ -8,9 +8,10 @@ export default makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(20,121,255,1)'
   },
   heading: {
-    color: 'rgba(0,183,255, 1)',
+    color: 'rgba(255,255,255, 1)',
   },
   image: {
     marginLeft: '15px',
