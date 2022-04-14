@@ -6,13 +6,18 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 
+import { ThemeProvider } from '@material-ui/core';
+import { zanifyTheme } from './theme/zanifyTheme';
+
 import App from './App';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App /> 
-    </Provider>,
+    <ThemeProvider theme={zanifyTheme}>
+        <Provider store={store}>
+            <App /> 
+        </Provider>
+    </ThemeProvider>,
     document.getElementById('root')
 );

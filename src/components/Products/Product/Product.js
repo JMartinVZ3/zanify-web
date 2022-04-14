@@ -16,15 +16,15 @@ const Product = ({ product }) => {
           alt="green iguana"
         />
         <CardContent>
-          <Typography variant="h5">
+          <Typography variant="h5" color="secondary">
             {product.title}
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="h4" color="secondary">
             ${product.price}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={()=>{}}>Add to Cart</Button>
+          <Button onClick={()=>{}} color="primary">Add to Cart</Button>
         </CardActions>
       </Card>
     )

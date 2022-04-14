@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, AppBar, Typography, Grow} from '@material-ui/core';
 
-
 import Categories from './components/Categories/Categories';
-import memories from './images/memories.png';
 import useStyles from './styles';
+
+
 
 const App = () => {
     const classes = useStyles();

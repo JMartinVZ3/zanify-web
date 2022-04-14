@@ -6,7 +6,7 @@ const Category = ({ category }) => {
 
     return (
         <Container>
-            <Typography variant='h4'>{category?.title}</Typography>
+            <Typography variant='h3' color="secondary">{category?.title}</Typography>
         </Container>
     )
 
