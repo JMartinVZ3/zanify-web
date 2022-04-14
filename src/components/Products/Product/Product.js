@@ -1,23 +1,29 @@
 import React  from "react";
 import { useDispatch } from 'react-redux';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core';
 import { AddProduct } from '../../../actions/shoppingCart';
+import useStyles from '../Product/styles'
 
 const Product = ({ product }) => {
 
     const dispatch = useDispatch();
 
-    const image = `${product.images_url[0]}`
+    const loader = 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png'
+    console.log(product.images_url[0])
+
+    const classes = useStyles();
+    const image = product.images_url[0]? product.images_url[0] : `${loader}`
 
     return (
-        <Card sx={{ maxWidth: 330, minWidth:330, maxHeight: 560}}>
+        <Card elevation={0} sx={{ maxWidth: 330, minWidth:330, maxHeight: 560}}>
         <CardMedia
+          
           component="img"
-          height="400"
+          height="250"
           image={image}
-          alt="green iguana"
+          alt=" green iguana"
         />
-        <CardContent>
+        <CardContent className={classes.CardContentStyle}>
           <Typography variant="h5" color="secondary">
             {product.title}
           </Typography>
@@ -25,10 +31,9 @@ const Product = ({ product }) => {
             ${product.price}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button color="primary"onClick={() => {
-            dispatch(AddProduct(product))
-          }}>Add to Cart</Button>
+        <CardActions style={{justifyContent: 'center'}}>
+            <Button color="primary"onClick={() => {
+              dispatch(AddProduct(product))}}>Add to Cart</Button>
         </CardActions>
       </Card>
     )
