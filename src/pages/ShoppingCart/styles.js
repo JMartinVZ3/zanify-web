@@ -9,9 +9,6 @@ export default makeStyles(() => ({
   },
   box: {
     borderRadius: 10,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     backgroundColor: {
         color: '#F9FAFB',
     }

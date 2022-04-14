@@ -4,9 +4,13 @@ export default (shoppingCart = [], action) => {
 
         case 'ADD_PRODUCT':
 
-            console.log(shoppingCart);
+            const  element = shoppingCart.find(element => element._id === action.payload._id)
 
-            return [...shoppingCart, action.payload];
+            if (element =! null) {
+                return [...shoppingCart.map((product) => (product._id === element._id ? product.quantity++ : product))]
+            } else {
+                return [...shoppingCart, action.payload]
+            }
 
         case 'DELETE_PRODUCT':
 

@@ -16,7 +16,17 @@ export const AddProduct = (product) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: 'ADD_PRODUCT', payload: product});
+        const data = {
+            "category": product.category,
+            "description": product.description,
+            "images_url": product.images_url,
+            "price": product.price,
+            "title": product.title,
+            "_id": product._id,
+            "quantity": 1
+        }
+
+        dispatch({ type: 'ADD_PRODUCT', payload: data});
 
     } catch (error) {
 
