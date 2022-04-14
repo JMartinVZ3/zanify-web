@@ -22,14 +22,14 @@ const Categories = () => {
 
     return(
         !categories?.length ? <CircularProgress/> : (
-            <Grid container alignItems="stretch" spacing={3}>
-                {categories.map((category) => (
+            categories.map((category) => (
+                <>
+                    <Category category={category}/>
                     <Grid key={category._id} itemxs={12} sm={12}>
-                        <Category category={category}/>
                         <Products products={category.products}/>
                     </Grid>
-                ))}
-            </Grid>
+                </>
+            ))
         )
     );
 

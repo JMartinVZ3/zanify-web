@@ -12,10 +12,19 @@ export const zanifyTheme = createTheme({
     },
     palette: {
         primary: {
-            main: '#1479FF'
+            main: '#1479FF',
+            light: "#ffffff"
         },
         secondary: {
             main: '#0C3976'
+        },
+        neutral: {
+            main: '#FFFFFF',
+            contrastText: "#1479FF"
+        },
+        success: {
+            main: '#FFFFFF',
+            contrastText: "#1479FF"
         }
     },
     typography: {

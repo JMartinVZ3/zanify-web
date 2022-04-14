@@ -5,9 +5,7 @@ const Category = ({ category }) => {
 
 
     return (
-        <Container>
             <Typography variant='h3' color="secondary">{category?.title}</Typography>
-        </Container>
     )
 
 }
