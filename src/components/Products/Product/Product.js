@@ -1,15 +1,17 @@
 import React  from "react";
 import { useDispatch } from 'react-redux';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Box } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import { AddProduct } from '../../../actions/shoppingCart';
 import useStyles from '../Product/styles'
 
+import { useSelector } from 'react-redux';
 const Product = ({ product }) => {
 
     const dispatch = useDispatch();
 
+    const shoppingCart = useSelector((state) => state.shoppingCart);
+
     const loader = 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png'
-    console.log(product.images_url[0])
 
     const classes = useStyles();
     const image = product.images_url[0]? product.images_url[0] : `${loader}`
@@ -33,7 +35,9 @@ const Product = ({ product }) => {
         </CardContent>
         <CardActions style={{justifyContent: 'center'}}>
             <Button color="primary"onClick={() => {
-              dispatch(AddProduct(product))}}>Add to Cart</Button>
+              console.log(shoppingCart)
+              dispatch(AddProduct(product))        
+            }}>Add to Cart</Button>
         </CardActions>
       </Card>
     )

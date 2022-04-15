@@ -3,8 +3,6 @@ import { Container, Typography, Box, Grid, Grow, CircularProgress } from '@mater
 
 import { useSelector } from 'react-redux';
 
-
-
 import useStyles from './styles';
 import ShoppingCartObject from '../../components/ShoppingCartObject/ShoppingCartObject';
 

@@ -4,25 +4,26 @@ export default (shoppingCart = [], action) => {
 
         case 'ADD_PRODUCT':
 
-            const  element = shoppingCart.find(element => element._id === action.payload._id)
+            let productFind = shoppingCart.find((element) => 
+                element._id === action.payload._id
+            );
 
-            if (element =! null) {
-                return [...shoppingCart.map((product) => (product._id === element._id ? product.quantity++ : product))]
-            } else {
-                return [...shoppingCart, action.payload]
+            if (productFind === undefined) return [...shoppingCart, action.payload];
+
+            if (productFind.quantity < 9) {
+                productFind.quantity++
             }
+            
+            return shoppingCart.map((product) => (product._id === productFind._id ? productFind : product));
+
 
         case 'DELETE_PRODUCT':
 
             return action.payload;
 
-        case 'SUM_PRODUCT':
+        case 'QUANTITY_PRODUCT':
 
-            return action.payload;
-
-        case 'MINUS_PRODUCT':
-
-            return action.payload;
+            return shoppingCart.map((product) => (product._id === action.payload._id ? action.payload : product));;
 
         default:
 

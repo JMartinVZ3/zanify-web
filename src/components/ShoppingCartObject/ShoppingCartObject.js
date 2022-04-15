@@ -5,14 +5,30 @@ import { Box, Container, Typography, FormControl, InputLabel,
 
 import useStyles from './styles';
 
+import { useDispatch } from 'react-redux';
+
+import { QuantityProduct } from '../../actions/shoppingCart';
+
 const ShoppingCartObject = ({product}) => {
+
+    const dispatch = useDispatch();
 
     const classes = useStyles();
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(product.quantity);
 
     const handleChange = (event) => {
         setValue(event.target.value);
+        const data = {
+            "category": product.category,
+            "description": product.description,
+            "images_url": product.images_url,
+            "price": product.price,
+            "title": product.title,
+            "_id": product._id,
+            "quantity": event.target.value
+        }
+        dispatch(QuantityProduct(data))
     }
 
     return (

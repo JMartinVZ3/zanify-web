@@ -26,6 +26,8 @@ export const AddProduct = (product) => async (dispatch) => {
             "quantity": 1
         }
 
+        console.log(data);
+
         dispatch({ type: 'ADD_PRODUCT', payload: data});
 
     } catch (error) {
@@ -50,25 +52,21 @@ export const DeleteProduct = () => async (dispatch) => {
 
 }
 
-export const SumProduct = () => async (dispatch) => {
+export const QuantityProduct = (product) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: 'SUM_PRODUCT'});
+        const data = {
+            "category": product.category,
+            "description": product.description,
+            "images_url": product.images_url,
+            "price": product.price,
+            "title": product.title,
+            "_id": product._id,
+            "quantity": product.quantity
+        }
 
-    } catch (error) {
-
-        console.log(error.message);
-        
-    }
-
-}
-
-export const MinusProduct = () => async (dispatch) => {
-
-    try {
-
-        dispatch({ type: 'MINUS_PRODUCT'});
+        dispatch({ type: 'QUANTITY_PRODUCT', payload: data});
 
     } catch (error) {
 
