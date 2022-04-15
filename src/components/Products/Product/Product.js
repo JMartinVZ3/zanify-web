@@ -7,13 +7,14 @@ import useStyles from '../Product/styles'
 import { useSelector } from 'react-redux';
 const Product = ({ product }) => {
 
+    const classes = useStyles();
+
     const dispatch = useDispatch();
 
     const shoppingCart = useSelector((state) => state.shoppingCart);
 
     const loader = 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png'
 
-    const classes = useStyles();
     const image = product.images_url[0]? product.images_url[0] : `${loader}`
 
     return (
@@ -23,7 +24,7 @@ const Product = ({ product }) => {
           component="img"
           height="250"
           image={image}
-          alt=" green iguana"
+          alt=" imagen"
         />
         <CardContent className={classes.CardContentStyle}>
           <Typography variant="h5" color="secondary">

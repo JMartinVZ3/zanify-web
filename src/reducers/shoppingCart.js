@@ -1,3 +1,5 @@
+
+
 export default (shoppingCart = [], action) => {
 
     switch (action.type) {
@@ -16,10 +18,9 @@ export default (shoppingCart = [], action) => {
             
             return shoppingCart.map((product) => (product._id === productFind._id ? productFind : product));
 
-
         case 'DELETE_PRODUCT':
 
-            return action.payload;
+            return shoppingCart.filter((product) => product._id !== action.payload._id);
 
         case 'QUANTITY_PRODUCT':
 

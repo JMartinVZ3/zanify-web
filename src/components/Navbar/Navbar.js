@@ -20,7 +20,8 @@ const Navbar = () => {
             </Box>
             <Box sx={{ mr: 5}}>
                 <Button variant="contained" disableElevation className={classes.containedButton}>
-                    <Link to="/shopping-cart">SNCISN</Link>
+                    
+                    <Link to="/shopping-cart" style={{textDecoration: 'none'}}>Ver Carrito</Link>
                 </Button>
                 <Button variant="outlined" color="inherit" onClick={() => {}}>Contactar Tienda</Button>
             </Box>

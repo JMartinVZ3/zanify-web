@@ -1,13 +1,14 @@
 import React, {useState}  from "react";
 
 import { Box, Container, Typography, FormControl, InputLabel, 
-    Select, MenuItem } from '@material-ui/core';
+    Select, MenuItem, Button } from '@material-ui/core';
 
 import useStyles from './styles';
 
 import { useDispatch } from 'react-redux';
 
-import { QuantityProduct } from '../../actions/shoppingCart';
+import { QuantityProduct, DeleteProduct } from '../../actions/shoppingCart';
+
 
 const ShoppingCartObject = ({product}) => {
 
@@ -16,6 +17,10 @@ const ShoppingCartObject = ({product}) => {
     const classes = useStyles();
 
     const [value, setValue] = useState(product.quantity);
+
+    const loader = 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png'
+
+    const image = product.images_url[0]? product.images_url[0] : `${loader}`
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -40,14 +45,19 @@ const ShoppingCartObject = ({product}) => {
                 sx={{
                   height: 130,
                   width: 130,
+                  minHeight: {xs: 130, md: 130},
+                  minWidth: {xs: 130, md: 130},
                   maxHeight: { xs: 130, md: 130 },
                   maxWidth: { xs: 130, md: 130 },
                 }}
-                alt="The house from the offer."
-                src= {product.images_url[0] =! null ? product.images_url[0] : "https://www.infobae.com/new-resizer/xHORBTTOvi76_TX7OOanBUblR-0=/1200x900/filters:format(webp):quality(85)//arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/FJKXKQKMMJBV7KQ7XQ3YNFO7LU.jpg"}
+                alt="producto"
+                src= {image}
             />
             <Container className={classes.column}>
-                <Typography variant="h4" color="secondary">{product.title}</Typography>
+                <Box className={classes.rowProductTitle}>
+                    <Typography variant="h4" color="secondary">{product.title}</Typography>
+                    <Typography variant="h5" color="secondary">${product.price}</Typography>
+                </Box>
                 <Typography variant="body1" color="primary">Disponible</Typography>
                 <Box className={classes.rowQuantity}>
                     <FormControl fullWidth>
@@ -72,7 +82,11 @@ const ShoppingCartObject = ({product}) => {
                         </Select>
                     </FormControl>
                     <Box sx={{mr: 2}}/>
-                    <Typography variant="body1" color="primary">Disponible</Typography>
+                    <Button onClick={
+                        () => {
+                            dispatch(DeleteProduct(product))
+                        }
+                    }>Eliminar</Button>
                 </Box>
             </Container>
         </Container>

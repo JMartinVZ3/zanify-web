@@ -25,6 +25,11 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  rowProductTitle: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 
 }));

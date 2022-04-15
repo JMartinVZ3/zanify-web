@@ -38,11 +38,11 @@ export const AddProduct = (product) => async (dispatch) => {
 
 }
 
-export const DeleteProduct = () => async (dispatch) => {
+export const DeleteProduct = (product) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: 'DELETE_PRODUCT'});
+        dispatch({ type: 'DELETE_PRODUCT', payload: product});
 
     } catch (error) {
 

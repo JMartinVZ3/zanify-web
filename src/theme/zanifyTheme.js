@@ -35,19 +35,19 @@ export const zanifyTheme = createTheme({
         },
         h2: {
             fontSize: 58,
-            fontWeight: 500,
+            fontWeight: 600,
         },
         h3: {
             fontSize: 48,
-            fontWeight: 500,
+            fontWeight: 600,
         },
         h4: {
             fontSize: 24,
             fontWeight: 600
         },
         h5: {
-            fontSize: 24,
-            fontWeight: 400
+            fontSize: 20,
+            fontWeight: 600
         },
         Button: {
             fontSize: 24,
