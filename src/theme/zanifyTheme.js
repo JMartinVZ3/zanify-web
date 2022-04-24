@@ -11,6 +11,9 @@ export const zanifyTheme = createTheme({
         },
     },
     palette: {
+        background: {
+            default: "#E5E7EB"
+          },
         primary: {
             main: '#1479FF',
             light: "#ffffff"

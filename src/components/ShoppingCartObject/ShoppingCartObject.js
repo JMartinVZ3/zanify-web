@@ -38,8 +38,9 @@ const ShoppingCartObject = ({product}) => {
 
     return (
         
-        <Container className={classes.row}>
+        <Container className={classes.row} style={{padding: '16px 0px 16px 0px'}}>
             <Box
+                
                 className={classes.box}
                 component="img"
                 sx={{

@@ -20,6 +20,7 @@ import { persistedReducer } from './reducers';
 import App from './App';
 
 import { ThemeProvider } from '@material-ui/core';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { zanifyTheme } from './theme/zanifyTheme';
 
 import Shop from "./pages/Shop/Shop";
@@ -33,6 +34,7 @@ const persistor = persistStore(store);
 
 ReactDOM.render(
     <ThemeProvider theme={zanifyTheme}>
+        <CssBaseline />
         <Provider store={store}>
             <PersistGate persistor={persistor}>
                 <BrowserRouter>

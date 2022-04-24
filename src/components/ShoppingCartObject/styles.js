@@ -6,14 +6,16 @@ export default makeStyles(() => ({
       display: 'flex',
   },
   row: {
-    padding: '10px',
-    margin: ' 0 0 10px 0',
+    padding: '0',
+    margin: ' 0 0 0 0',
     borderRadius: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
   column: {
+    padding: '0',
+    paddingLeft: '16px',
     borderRadius: 10,
     display: 'flex',
     flexDirection: 'column',

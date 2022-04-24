@@ -23,14 +23,16 @@ const Categories = () => {
     return(
         !categories?.length ? <CircularProgress/> : (
             categories.map((category) => (
+                console.log(categories),
+                category.products.length > 0 && (
                 <>
-                    <Box sx={{ mt: 4}}/>
+                    <Box style={{paddingBottom: '48px', margin:'0px'}} sx={{ mt: 4}}/>
                     <Category category={category}/>
                     <Grid key={category._id} itemxs={12} sm={12}>
                         <Products products={category.products}/>
                     </Grid>
                 </>
-            ))
+            )))
         )
     );
 

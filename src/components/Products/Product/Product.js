@@ -26,16 +26,16 @@ const Product = ({ product }) => {
           image={image}
           alt=" imagen"
         />
-        <CardContent className={classes.CardContentStyle}>
-          <Typography variant="h5" color="secondary">
+        <CardContent className={classes.CardContentStyle} style={{padding: 0, paddingTop:16}}>
+          <Typography variant="h5" color="secondary" >
             {product.title}
           </Typography>
-          <Typography variant="h4" color="secondary">
+          <Typography variant="h4" color="secondary" >
             ${product.price}
           </Typography>
         </CardContent>
-        <CardActions style={{justifyContent: 'center'}}>
-            <Button color="primary"onClick={() => {
+        <CardActions style={{justifyContent: 'center', paddingBottom:'16px'}}>
+            <Button color="primary" onClick={() => {
               console.log(shoppingCart)
               dispatch(AddProduct(product))        
             }}>Add to Cart</Button>

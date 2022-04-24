@@ -9,23 +9,27 @@ export default makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   box: {
+    padding: '16px',
     borderRadius: 10,
     backgroundColor: {
         color: '#F9FAFB',
-    }
+    },
+    alignItems:'center',
   },
   row: {
     margin: ' 0 25px 0 0',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   boxRow: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   boxColumn: {
     display: 'flex',
