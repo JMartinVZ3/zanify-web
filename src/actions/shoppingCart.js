@@ -1,3 +1,4 @@
+import * as api from '../api';
 
 export const GetShoppingCartProducts = () => async (dispatch) => {
 
@@ -74,4 +75,41 @@ export const QuantityProduct = (product) => async (dispatch) => {
         
     }
 
+}
+
+export const PostOrder = () => async (dispatch) => {
+    
+    try {
+
+        const data = {
+            "client": {
+                "name": "Martin",
+                "lastName": "Veliz"
+            },
+            "products": [
+                {
+                    "product": "61f5b76ec42386c70c486514",
+                    "quantity": 2
+                },
+                {
+                    "product": "61f9b2eb916daf000efbc0b2",
+                    "quantity": 1
+                },
+                        {
+                    "product": "61f5b76ec42386c70c486514",
+                    "quantity": 1
+                }
+            ]
+        }
+
+        const info = await api.postOrder(data);
+
+        console.log(info);
+
+        dispatch({ type: 'POST_PRODUCT', payload: data});
+    } catch (error) {
+
+        console.log(error.message);
+
+    }
 }

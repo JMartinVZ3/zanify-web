@@ -1,4 +1,8 @@
 import React , {useState} from "react";
+import { useDispatch } from 'react-redux';
+
+import { PostOrder } from "../../actions/shoppingCart";
+
 import {
   Container,
   Typography,
@@ -20,24 +24,31 @@ import ShoppingCartObject from "../../components/ShoppingCartObject/ShoppingCart
 const ShoppingCart = () => {
   const shoppingCart = useSelector((state) => state.shoppingCart);
 
+  const [sent, setSent] = useState(false);
+
   const classes = useStyles();
-  const [success, setSuccess] = useState(false)
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+
+    dispatch(PostOrder());
+
+    setSent(true);
+  }
 
   let total = 0;
-  let pageSuccess;
-  let pageShoppingCart;
 
   for (let i = 0; i < shoppingCart.length; i++) {
     total += shoppingCart[i].price * shoppingCart[i].quantity;
   }
 
-  const setSuccessFunction = () => {
-    setSuccess(true);
-  }
-  
-  pageShoppingCart =  <>
+  return(
+  <>
+  {!sent ? (
+    <>  
     <Box sx={{ mt: 12, bgcolor: "#E5E7EB" }} />
-    <Grow in>
+        <Grow in>
       <Grid
         container
         alignItems="stretch"
@@ -112,7 +123,7 @@ const ShoppingCart = () => {
                 </Typography>
               </Box>
               <Grid container justify="flex-end">
-                <Button variant="contained" color="primary" disableElevation onClick={() => setSuccessFunction()}>
+                <Button variant="contained" color="primary" disableElevation onClick={handleClick}>
                   Enviar Pedido
                 </Button>
               </Grid>
@@ -121,9 +132,11 @@ const ShoppingCart = () => {
         </Grid>
       </Grid>
     </Grow>
-  </>
+    
+    </>
 
-  pageSuccess = <>
+  ) : (
+    <>
   <Box sx={{ mt: 12, bgcolor: "#E5E7EB" }} />
   <Grow in>
     <Grid
@@ -144,17 +157,7 @@ const ShoppingCart = () => {
             Tu orden ha sido enviada
           </Typography>
           <Box><CheckCircleIcon/></ Box>
-          <Box
-            className={classes.row}
-            style={{ padding: "0px 0px 8px 0px", margin: "0px" }}
-          >
-            <Typography variant="body1" color="secondary">
-              Esta es la orden que se enviará a la tienda
-            </Typography>
-            <Typography variant="body1" color="secondary">
-              Precio
-            </Typography>
-          </Box>
+
           <Box style={{ paddingTop: "8px" }}></Box>
           <>
             {!shoppingCart?.length ? (
@@ -173,9 +176,8 @@ const ShoppingCart = () => {
     </Grid>
   </Grow>
 </>
-
-  return (<>{!success? (pageSuccess) : (pageShoppingCart)}</>
-      
+  )}
+  </>
   );
 };
 
@@ -197,3 +199,4 @@ const ShoppingCartProduct = ({ product }) => {
 };
 
 export default ShoppingCart;
+
