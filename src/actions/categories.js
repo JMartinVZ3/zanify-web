@@ -1,10 +1,10 @@
 import * as api from '../api';
 
-export const getCategories = () => async (dispatch) => {
+export const getCategories = (shopName, userName) => async (dispatch) => {
 
     try {
 
-        const { data } = await api.fetchCategories();
+        const { data } = await api.fetchCategories(shopName, userName);
 
         dispatch({ type: 'FETCH_ALL_CATEGORIES', payload: data?.categories});
 

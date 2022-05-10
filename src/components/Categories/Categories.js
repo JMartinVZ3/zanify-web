@@ -10,12 +10,14 @@ import { getCategories } from '../../actions/categories';
 
 import Products from '../Products/Products';
 
-const Categories = () => {
+const Categories = ({shopName, userName}) => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCategories());
+
+        dispatch(getCategories(shopName, userName));
+
     }, [dispatch]);
 
     const categories = useSelector((state) => state.categories);

@@ -41,7 +41,7 @@ ReactDOM.render(
                     <Navbar/>
                     <Routes>
                         <Route path="/" element={<App />}/>
-                        <Route path="shop" element={<Shop/>}/>
+                        <Route path="catalog/:shopName/:userName" element={<Shop/>}/>
                         <Route path="shopping-cart" element={<ShoppingCart/>}/>
                     </Routes>
                 </BrowserRouter>

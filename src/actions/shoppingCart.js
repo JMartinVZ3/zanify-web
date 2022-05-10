@@ -1,10 +1,10 @@
 import * as api from '../api';
 
-export const GetShoppingCartProducts = () => async (dispatch) => {
+export const GetShoppingCartProducts = (categories) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: "GET_SHOPPING_CART_PRODUCTS"})
+        dispatch({ type: "GET_SHOPPING_CART_PRODUCTS", payload: categories});
 
     } catch (error) {
 

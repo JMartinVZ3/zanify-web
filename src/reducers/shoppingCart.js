@@ -4,6 +4,18 @@ export default (shoppingCart = [], action) => {
 
     switch (action.type) {
 
+        case 'GET_SHOPPING_CART_PRODUCTS':
+
+        let newList = []
+
+        for (let i = 0; i < action.payload.length; i++) {
+            const productFind = shoppingCart.filter((product) => product.category === action.payload[i]._id)
+            newList = newList.concat(productFind);
+            console.log(newList);
+        }
+
+        return newList;
+
         case 'ADD_PRODUCT':
 
             let productFind = shoppingCart.find((element) => 

@@ -1,10 +1,9 @@
-import React , {useState} from "react";
+import React , {useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
 
-import { PostOrder } from "../../actions/shoppingCart";
+import { GetShoppingCartProducts, PostOrder } from "../../actions/shoppingCart";
 
 import {
-  Container,
   Typography,
   Box,
   Grid,
@@ -22,13 +21,22 @@ import useStyles from "./styles";
 import ShoppingCartObject from "../../components/ShoppingCartObject/ShoppingCartObject";
 
 const ShoppingCart = () => {
+
+  const dispatch = useDispatch();
+
+  const categories = useSelector((state) => state.categories);
+
+  useEffect(() => {
+
+    dispatch(GetShoppingCartProducts(categories));
+
+  }, [dispatch]);
+  
   const shoppingCart = useSelector((state) => state.shoppingCart);
 
   const [sent, setSent] = useState(false);
 
   const classes = useStyles();
-
-  const dispatch = useDispatch();
 
   const handleClick = () => {
 
