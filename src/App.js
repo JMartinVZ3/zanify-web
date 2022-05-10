@@ -6,7 +6,6 @@ const App = () => {
 
     return (
         <Container maxWidth='lg'>
-            <h1></h1>
         </Container>
     )
 }

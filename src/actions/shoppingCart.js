@@ -77,32 +77,21 @@ export const QuantityProduct = (product) => async (dispatch) => {
 
 }
 
-export const PostOrder = () => async (dispatch) => {
+export const PostOrder = (name, lastName, products, shopId) => async (dispatch) => {
     
     try {
 
+        console.log(products);
+
         const data = {
             "client": {
-                "name": "Martin",
-                "lastName": "Veliz"
+                "name": name,
+                "lastName": lastName
             },
-            "products": [
-                {
-                    "product": "61f5b76ec42386c70c486514",
-                    "quantity": 2
-                },
-                {
-                    "product": "61f9b2eb916daf000efbc0b2",
-                    "quantity": 1
-                },
-                        {
-                    "product": "61f5b76ec42386c70c486514",
-                    "quantity": 1
-                }
-            ]
+            "products": products
         }
 
-        const info = await api.postOrder(data);
+        const info = await api.postOrder(data, shopId);
 
         console.log(info);
 
