@@ -1,7 +1,7 @@
 import React, {useState}  from "react";
 
 import { Box, Container, Typography, FormControl, InputLabel, 
-    Select, MenuItem, Button } from '@material-ui/core';
+    Select, MenuItem, Button, Card, CardActions, CardContent, CardMedia, } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -48,19 +48,18 @@ const ShoppingCartObject = ({product} : ShoppingCartObjectProps) => {
     }
 
     return (
+
         
         <Container className={classes.row} style={{padding: '16px 0px 16px 0px'}}>
-            <Box
-                className={classes.box}
-                sx={{
-                  height: 130,
-                  width: 130,
-                  minHeight: {xs: 130, md: 130},
-                  minWidth: {xs: 130, md: 130},
-                  maxHeight: { xs: 130, md: 130 },
-                  maxWidth: { xs: 130, md: 130 },
-                }}
-            />
+            <Card elevation={0}>                 
+                <CardMedia
+                    component="img"
+                    height="130"
+                    width="130"
+                    image={image}
+                    alt=" imagen"
+                />
+            </Card>
             <Container className={classes.column}>
                 <Box className={classes.rowProductTitle}>
                     <Typography variant="h4" color="secondary">{product.title}</Typography>

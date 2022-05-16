@@ -4,6 +4,8 @@ export default makeStyles(() => ({
   box: {
       borderRadius: 10,
       display: 'flex',
+      height: "130",
+      width: "130",
   },
   row: {
     padding: '0',

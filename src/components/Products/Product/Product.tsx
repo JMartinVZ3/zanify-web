@@ -4,7 +4,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@
 import {
   useAppDispatch,
   useAppSelector,
-} from '../../../hooks';
+} from '../../../app/hooks';
 
 import { 
   AddProduct,

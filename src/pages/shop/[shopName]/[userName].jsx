@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { Container, Typography, Grow, Box} from '@material-ui/core';
+import { Typography, Grow } from '@material-ui/core';
 
 import { useRouter } from 'next/router'
 
 
 import Categories from '../../../components/Categories/Categories';
 
+import useStyles from "./styles";
+
 const Shop = () => {
+
+    const classes = useStyles();
 
     const router = useRouter()
     const { shopName, userName } = router.query;
@@ -17,15 +21,15 @@ const Shop = () => {
     console.log(userName);
 
     return (
-        <Container maxWidth='lg'>
-            <Box sx={{ mt: 12}}/>
+        <div className={classes.container}>
+            <div className={classes.sizedBox}/>
             <Typography variant='h1' color="secondary">
                 Catálogo
             </Typography>
             <Grow in>
-                <Categories shopName={"volva"} userName={"test2"}/>
+                <Categories shopName={"volva"} userName={"test1"}/>
             </Grow>
-        </Container>
+        </div>
     )
 }
 

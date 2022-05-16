@@ -16,7 +16,7 @@ type ProductsListProps = {
     quantity: any;
 }
 
-export const PostOrder = createAsyncThunk('shoppingCart/postOrder', async ({name, lastName, products, shopId} : {name: string, lastName: string, products: ProductsListProps[], shopId: string}) => {
+export const PostOrder = createAsyncThunk<any>('shoppingCart/postOrder', async ({name, lastName, products, shopId} : any ) => {
 
     try {
 

@@ -3,7 +3,7 @@ import React , {useState, useEffect} from "react";
 import {
   useAppDispatch,
   useAppSelector,
-} from '../../hooks';
+} from '../../app/hooks';
 
 import {
   selectCategory,
@@ -70,140 +70,113 @@ const ShoppingCart = () => {
   }
 
   return(
-  <>
-  {!sent ? (
-    <>  
-    <Box sx={{ mt: 12, bgcolor: "#E5E7EB" }} />
-        <Grow in>
-      <Grid
-        container
-        alignItems="stretch"
-        style={{ padding: "0px 36px 0px 36px" }}
-        spacing={2}
-      >
-        <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-          <Box
-            sx={{ bgcolor: "#F9FAFB" }}
-            className={classes.box}
-            style={{ padding: "16px" }}
-          >
-            <Typography variant="h4" color="secondary">
-              Carrito de Compra
-            </Typography>
-            <Box
-              className={classes.row}
-              style={{ padding: "0px 0px 8px 0px", margin: "0px" }}
-            >
-              <Typography variant="body1" color="secondary">
-                Esta es la orden que se enviará a la tienda
-              </Typography>
-              <Typography variant="body1" color="secondary">
-                Precio
-              </Typography>
-            </Box>
-            <Box style={{ paddingTop: "8px" }}></Box>
-            <>
-              {!shoppingCart?.length ? (
-                <CircularProgress />
-              ) : (
-                shoppingCart.map((product: any) => (
-                  <Grid key={product._id} sm={12}>
-                    <Divider />
-                    <ShoppingCartObject product={product} />
-                  </Grid>
-                ))
-              )}
-            </>
-          </Box>
-        </Grid>
-        <Grid item md={4} lg={4} xl={4}>
-          <Box sx={{ bgcolor: "#F9FAFB" }} className={classes.box}>
-            <Typography
-              variant="h4"
-              color="secondary"
-              style={{ paddingBottom: "16px" }}
-            >
-              Resumen del pedido
-            </Typography>
-            <Divider style={{ marginBottom: "16px" }}></Divider>
-            <>
-              {!shoppingCart?.length ? (
-                <CircularProgress />
-              ) : (
-                shoppingCart.map((product: any) => (
-                  <Grid key={product._id} sm={12}>
-                    <ShoppingCartProduct product={product} />
-                  </Grid>
-                ))
-              )}
-              <Divider style={{ marginTop: "16px" }}></Divider>
-              <Box
-                className={classes.boxRow}
-                style={{ margin: "16px 0px 16px 0px" }}
-              >
-                <Typography variant="h5" color="secondary">
-                  Total
-                </Typography>
-                <Typography variant="h5" color="secondary">
-                  ${total}
-                </Typography>
-              </Box>
-              <Box>
-                  <PostOrderForm setSent={setSent}/>
-              </Box>
-            </>
-          </Box>
-        </Grid>
-      </Grid>
-    </Grow>
-    
-    </>
-
-  ) : (
-    <>
-  <Box sx={{ mt: 12, bgcolor: "#E5E7EB" }} />
-  <Grow in>
-    <Grid
-      container
-      alignItems="center"
-      style={{ padding: "0px 36px 0px 36px" }}
-      spacing={2}
-      direction="column"
-      justifyContent="center"
-    >
-      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-        <Box
-          sx={{ bgcolor: "#F9FAFB" }}
-          className={classes.box}
-          style={{ padding: "16px" }}
+  <div>
+    <div className={classes.sizedBox}/>
+    {!sent ? (
+      <Grow in>
+        <Grid
+          container
+          alignItems="stretch"
+          className={classes.grid}
+          spacing={2}
         >
-          <Typography align='center' variant="h4" color="secondary" >
-            Tu orden ha sido enviada
-          </Typography>
-          <Box><CheckCircleIcon/></ Box>
-
-          <Box style={{ paddingTop: "8px" }}></Box>
-          <>
-            {!shoppingCart?.length ? (
-              <CircularProgress />
-            ) : (
-              shoppingCart.map((product: any) => (
-                <Grid key={product._id} item xs={12} sm={12}>
-                  <Divider />
-                  <ShoppingCartObject product={product} />
-                </Grid>
-              ))
-            )}
-          </>
-        </Box>
-      </Grid>
-    </Grid>
-  </Grow>
-</>
+          <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+            <DisplayShoppingCartProducts shoppingCart={shoppingCart}/>
+          </Grid>
+          <Grid item md={4} lg={4} xl={4}>
+            <DisplayTotalShoppingCart shoppingCart={shoppingCart} total={total} setSent={setSent}/>
+          </Grid>
+        </Grid>
+      </Grow>
+    ) : (
+      <>
+      </>
   )}
-  </>
+  </div>
   );
 };
+
+const DisplayShoppingCartProducts = ({ shoppingCart } : any) => {
+  const classes = useStyles();
+
+  return (
+    <Box
+    className={classes.box}
+    >
+      <Typography variant="h4" color="secondary">
+        Carrito de Compra
+      </Typography>
+      <Box
+        className={classes.row}
+       style={{ padding: "0px 0px 8px 0px", margin: "0px" }}
+      >
+        <Typography variant="body1" color="secondary">
+          Esta es la orden que se enviará a la tienda
+        </Typography>
+        <Typography variant="body1" color="secondary">
+          Precio
+        </Typography>
+      </Box>
+      <Box style={{ paddingTop: "8px" }}></Box>
+      <>
+        {!shoppingCart?.length ? (
+          <CircularProgress />
+        ) : (
+          shoppingCart.map((product: any) => (
+            <Grid key={product._id} sm={12}>
+              <Divider />
+              <ShoppingCartObject product={product} />
+            </Grid>
+          ))
+        )}
+      </>
+  </Box>
+  )
+}
+
+const DisplayTotalShoppingCart = ({ shoppingCart, total, setSent } : any ) => {
+
+  const classes = useStyles();
+
+  return (
+    <Box sx={{ bgcolor: "#F9FAFB" }} className={classes.box}>
+    <Typography
+      variant="h4"
+      color="secondary"
+      style={{ paddingBottom: "16px" }}
+    >
+      Resumen del pedido
+    </Typography>
+    <Divider style={{ marginBottom: "16px" }}></Divider>
+    <>
+      {!shoppingCart?.length ? (
+        <CircularProgress />
+      ) : (
+        shoppingCart.map((product: any) => (
+          <Grid key={product._id} sm={12}>
+            <ShoppingCartProduct product={product} />
+          </Grid>
+        ))
+      )}
+      <Divider style={{ marginTop: "16px" }}></Divider>
+      <Box
+        className={classes.boxRow}
+        style={{ margin: "16px 0px 16px 0px" }}
+      >
+        <Typography variant="h5" color="secondary">
+          Total
+        </Typography>
+        <Typography variant="h5" color="secondary">
+          ${total}
+        </Typography>
+      </Box>
+      <Box>
+          <PostOrderForm setSent={setSent}/>
+      </Box>
+    </>
+  </Box>
+  )
+}
 
 const ShoppingCartProduct = ({ product } : any) => {
   const classes = useStyles();
@@ -266,9 +239,9 @@ const PostOrderForm = ({setSent} : any) => {
 
       }
 
-      const shopId:string = "2323";
+      const shopId:string = categories[0].shop;
 
-      console.log(products);
+      console.log(shopId);
 
       dispatch(PostOrder({name, lastName, products, shopId}))
 

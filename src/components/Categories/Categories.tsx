@@ -11,7 +11,7 @@ import {
 import {
     useAppDispatch,
     useAppSelector,
-} from '../../hooks';
+} from '../../app/hooks';
 
 import Products from '../Products/Products';
 

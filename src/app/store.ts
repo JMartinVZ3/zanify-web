@@ -8,8 +8,8 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 
-import { categoryReducer } from './features/category';
-import { shoppingCartReducer } from './features/shoppingCart';
+import { categoryReducer } from '../features/category';
+import { shoppingCartReducer } from '../features/shoppingCart';
 
 import thunk from 'redux-thunk';
 
