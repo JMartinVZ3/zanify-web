@@ -1,35 +1,22 @@
 import React  from "react";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../app/hooks';
+import { Product } from "../../../domain/product";
 
-import { 
-  AddProduct,
-  selectShoppingCart
-} from '../../../features/shoppingCart';
+import { useShoppingCart } from '../../../application/shoppingCart';
 
 import useStyles from './styles'
 
 type ProductProps = {
-  product: {
-    _id: string
-    title: string,
-    price: number,
-    images_url: any
-  }
+  product: Product
 }
 
 
-const Product = ({ product }: ProductProps) => {
+const ProductDetail = ({ product }: ProductProps) => {
 
     const classes = useStyles();
 
-    const dispatch = useAppDispatch();
-
-    const shoppingCart = useAppSelector(selectShoppingCart);
+    const { useAddProduct } = useShoppingCart();
 
     const loader = 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png'
 
@@ -54,8 +41,7 @@ const Product = ({ product }: ProductProps) => {
         </CardContent>
         <CardActions style={{justifyContent: 'center', paddingBottom:'16px'}}>
             <Button color="primary" onClick={() => {
-              console.log(shoppingCart)
-              dispatch(AddProduct(product))        
+              useAddProduct()
             }}>Add to Cart</Button>
         </CardActions>
       </Card>
@@ -63,4 +49,4 @@ const Product = ({ product }: ProductProps) => {
 
 }
 
-export default Product;
+export default ProductDetail;

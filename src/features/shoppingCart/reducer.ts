@@ -1,14 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
+
+import { 
+    getShoppingCartProducts, 
+    addProduct, 
+    deleteProduct,
+    quantityProduct
+} from "../../domain/shoppingCart";
+
+import { Product } from "../../domain/product";
+
 import {
   GetShoppingCartProducts,
   AddProduct,
   DeleteProduct,
-  QuantityProduct,
-  PostOrder,
+  QuantityProduct
 } from './actions';
 
 type ShoppingCartState = {
-    data: Array<any>;
+    data: Product[];
     pending: boolean;
     error: boolean;
 };
@@ -23,64 +32,22 @@ export const shoppingCartReducer = createReducer(initialState, builder => {
   builder
     .addCase(GetShoppingCartProducts, (state, action) => {
         
-        let newList: any[] = <any>[];
-
-        for (let i = 0; i < action.payload.length; i++) {
-            const productFind = state.data.filter((product: any) => product.category === action.payload[i]._id)
-            newList = newList.concat(productFind);
-            console.log(newList);
-        }
-        
-        state.data = newList;
+        state.data = getShoppingCartProducts(state.data, action.payload);
 
     })
     .addCase(AddProduct, (state, action) => {
 
-        const data = {
-            "category": action.payload.category,
-            "description": action.payload.description,
-            "images_url": action.payload.images_url,
-            "price": action.payload.price,
-            "title": action.payload.title,
-            "_id": action.payload._id,
-            "quantity": 1
-        }
-
-       console.log(data);
-
-       let productFind = state.data.find((element: {_id: string}) => 
-       element._id === data._id
-       );
-
-       if (productFind === undefined) {
-           console.log(data);
-           state.data = [...state.data, data];
-
-       } else if (productFind.quantity < 9) {
-            productFind.quantity++
-            state.data = state.data.map((product: {_id: string}) => (product._id === productFind._id ? productFind : product));
-        }
-
+        state.data = addProduct(state.data, action.payload);        
 
     })
     .addCase(DeleteProduct, (state, action) => {
 
-        state.data = state.data.filter((product: {_id: string}) => product._id !== action.payload._id);
+        state.data = deleteProduct(state.data, action.payload);
 
     })
     .addCase(QuantityProduct, (state, action) => {
 
-        const data = {
-            "category": action.payload.category,
-            "description": action.payload.description,
-            "images_url": action.payload.images_url,
-            "price": action.payload.price,
-            "title": action.payload.title,
-            "_id": action.payload._id,
-            "quantity": action.payload.quantity
-        }
-
-        state.data = state.data.map((product: {_id: string}) => (product._id === data._id ? data : product));
+        state.data = quantityProduct(state.data, action.payload);
 
     })
 });

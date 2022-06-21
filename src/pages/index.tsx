@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-
 const IndexPage:React.FC = () => {
 
   return (

@@ -1,21 +1,6 @@
 import React , {useState, useEffect} from "react";
 
 import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../app/hooks';
-
-import {
-  selectCategory,
-} from '../../features/category';
-
-import { 
-  GetShoppingCartProducts, 
-  PostOrder, 
-  selectShoppingCart 
-} from "../../features/shoppingCart";
-
-import {
   Typography,
   Box,
   Grid,
@@ -29,11 +14,12 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
 import useStyles from "./styles";
 
 import ShoppingCartObject from "../../components/ShoppingCartObject/ShoppingCartObject";
+import { useShoppingCart } from "../../application/shoppingCart";
+
+import { useShoppingCartStorage } from "../../services/shoppingCartAdapter";
 
 const validationSchema = yup.object({
   name: yup
@@ -46,16 +32,15 @@ const validationSchema = yup.object({
 
 const ShoppingCart = () => {
 
-  const dispatch = useAppDispatch();
-  const categories = useAppSelector(selectCategory);
+  const { useGetShoppingCartProducts } = useShoppingCart();
 
   useEffect(() => {
 
-    dispatch(GetShoppingCartProducts(categories));
+    useGetShoppingCartProducts()
 
-  }, [dispatch]);
+  }, []);
 
-  const shoppingCart = useAppSelector(selectShoppingCart);
+  const { shoppingCart } = useShoppingCartStorage();
 
   console.log(shoppingCart)
 
@@ -197,18 +182,16 @@ const ShoppingCartProduct = ({ product } : any) => {
 
 const PostOrderForm = ({setSent} : any) => {
 
-  const dispatch = useAppDispatch();
 
-  const shoppingCart = useAppSelector(selectShoppingCart);
 
-  const categories: Array<any> = useAppSelector(selectCategory);
+  const { shoppingCart } = useShoppingCartStorage();
+
+  //const categories: Array<any> = useAppSelector(selectCategory);
 
   type ProductsListProps = {
     product: any;
     quantity: any;
   }
-
-  console.log(categories);
 
 
   const formik = useFormik({
@@ -230,7 +213,7 @@ const PostOrderForm = ({setSent} : any) => {
         
         const product:ProductsListProps = {
           
-          "product": shoppingCart[i]._id,
+          "product": shoppingCart[i].id,
           "quantity": shoppingCart[i].quantity
         
         }
@@ -239,11 +222,11 @@ const PostOrderForm = ({setSent} : any) => {
 
       }
 
-      const shopId:string = categories[0].shop;
+      //const shopId:string = categories[0].shop;
 
-      console.log(shopId);
+      //console.log(shopId);
 
-      dispatch(PostOrder({name, lastName, products, shopId}))
+      //dispatch(PostOrder({name, lastName, products, shopId}))
 
       setSent(true);
     },

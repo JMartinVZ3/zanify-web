@@ -9,7 +9,6 @@ type CategoryProps = {
 
 const Category = ({ category }: CategoryProps) => {
 
-
     return (
         <div style={{paddingBottom: '24px'}}>
             <Typography variant='h3' color="secondary">{category?.title}</Typography>

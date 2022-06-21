@@ -1,19 +1,12 @@
 import { CircularProgress, Grid, Box } from "@material-ui/core";
-import React, {useEffect} from "react";
+import React, { useEffect} from "react";
 
 import Category from './Category/Category';
 
-import {
-  selectCategory,
-  getCategories
-} from '../../features/category';
-
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '../../app/hooks';
-
 import Products from '../Products/Products';
+
+import { useCategories } from "../../application/categories";
+import { useCategoriesStorage} from "../../services/categoriesAdapter";
 
 type CategoriesProps = {
     shopName: string,
@@ -22,27 +15,25 @@ type CategoriesProps = {
 
 const Categories = ({shopName, userName}: CategoriesProps) => {
 
-    const dispatch = useAppDispatch();
+    const { useGetCategories } = useCategories();
 
     useEffect(() => {
 
-        dispatch(getCategories({userName, shopName}));
+        useGetCategories();
 
-    }, [dispatch]);
+    }, []);
 
-    const categories = useAppSelector(selectCategory);
-
-    console.log(categories);
+    const { categories } = useCategoriesStorage();
 
     return(
         !categories?.length ? <CircularProgress/> : (
-            categories.map((category: { products: any; _id: string; title: string; }) => (
-                console.log(categories),
+            categories.map((category) => (
+                
                 category.products.length > 0 && (
                 <>
                     <Box style={{paddingBottom: '48px', margin:'0px'}} sx={{ mt: 4}}/>
                     <Category category={category}/>
-                    <Grid key={category._id} item xs={12} sm={12}>
+                    <Grid item xs={12} sm={12}>
                         <Products products={category.products}/>
                     </Grid>
                 </>

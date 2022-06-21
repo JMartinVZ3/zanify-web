@@ -1,8 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { getCategories } from './actions';
+import { Category } from '../../domain/category';
+import { GetCategories } from './actions';
 
 type CategoryState = {
-  data: Array<any>;
+  data: Array<Category>;
   pending: boolean;
   error: boolean;
 };
@@ -15,17 +16,17 @@ const initialState: CategoryState = {
 
 export const categoryReducer = createReducer(initialState, builder => {
   builder
-    .addCase(getCategories.pending, state => {
+    .addCase(GetCategories.pending, state => {
       state.pending = true;
     })
-    .addCase(getCategories.fulfilled, (state, { payload }) => {
+    .addCase(GetCategories.fulfilled, (state, { payload }) => {
       state.pending = false;
       console.log(state.data);
       console.log("this is the state");
       state.data = payload;
       console.log(state.data);
     })
-    .addCase(getCategories.rejected, state => {
+    .addCase(GetCategories.rejected, state => {
       state.pending = false;
       state.error = true;
     });
