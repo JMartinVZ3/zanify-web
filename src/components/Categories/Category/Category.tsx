@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Typography } from '@material-ui/core';
 
 type CategoryProps = {
     category: {
@@ -10,8 +9,8 @@ type CategoryProps = {
 const Category = ({ category }: CategoryProps) => {
 
     return (
-        <div style={{paddingBottom: '24px'}}>
-            <Typography variant='h3' color="secondary">{category?.title}</Typography>
+        <div className='mt-4'>
+            <h1 className='text-5xl font-semibold font-sans text-darkBlue'>{category?.title}</h1>
         </div>
             
     )

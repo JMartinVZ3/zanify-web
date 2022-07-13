@@ -1,4 +1,3 @@
-import { CircularProgress, Grid, Box } from "@material-ui/core";
 import React, { useEffect} from "react";
 
 import Category from './Category/Category';
@@ -27,16 +26,15 @@ const Categories = ({userName, shopName}: CategoriesProps) => {
     const { categories } = useCategoriesStorage();
 
     return(
-        !categories?.length ? <CircularProgress/> : (
+        !categories?.length ? <div></div> : (
             categories.map((category) => (
                 
                 category.products.length > 0 && (
                 <>
-                    <Box style={{paddingBottom: '48px', margin:'0px'}} sx={{ mt: 4}}/>
                     <Category category={category}/>
-                    <Grid item xs={12} sm={12}>
+                    <div>
                         <Products products={category.products}/>
-                    </Grid>
+                    </div>
                 </>
             )))
         )

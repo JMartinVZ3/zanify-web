@@ -1,4 +1,3 @@
-import { Grid } from "@material-ui/core";
 import React from "react";
 
 import { Product } from "../../domain/product";
@@ -13,15 +12,11 @@ type ProductsProps = {
 const Products = ({products}: ProductsProps) => {
 
     return (
-        (
-            <Grid container spacing={3}>
-                {products.map((product: Product) => (
-                    <Grid item xs={12} sm={4} md={3}>
-                        <ProductDetail product={product}/>
-                    </Grid>
-                ))}
-            </Grid>
-        )
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 mt-4">
+            {products.map((product: Product) => (
+                <ProductDetail product={product}/>
+            ))}
+        </div>
     );
 
 }

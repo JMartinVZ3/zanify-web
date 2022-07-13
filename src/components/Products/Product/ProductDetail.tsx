@@ -1,20 +1,15 @@
 import React  from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 
 import { Product } from "../../../domain/product";
 
 import { useShoppingCart } from '../../../application/shoppingCart';
 
-import useStyles from './styles'
 
 type ProductProps = {
   product: Product
 }
 
-
 const ProductDetail = ({ product }: ProductProps) => {
-
-    const classes = useStyles();
 
     const { useAddProduct } = useShoppingCart();
 
@@ -23,27 +18,24 @@ const ProductDetail = ({ product }: ProductProps) => {
     const image = product.images_url[0]? product.images_url[0] : `${loader}`
 
     return (
-        <Card elevation={0}>
-        <CardMedia
-          component="img"
-          height="250"
-          image={image}
-          alt=" imagen"
-        />
-        <CardContent className={classes.CardContentStyle} style={{padding: 0, paddingTop:16}}>
-          <Typography variant="h5" color="secondary" >
+      <div className="max-w-sm rounded overflow-hidden">
+        <img className="w-full h-72 md:h-80 bg-cover object-cover" src={image} alt="producto"/>
+        <div className="px-6 py-4">
+          <p className="text-darkBlue text-2xl font-bold flex justify-center items-center">
             {product.title}
-          </Typography>
-          <Typography variant="h4" color="secondary" >
+          </p>
+          <p className="text-darkBlue text-xl font-semibold flex justify-center items-center">
             ${product.price}
-          </Typography>
-        </CardContent>
-        <CardActions style={{justifyContent: 'center', paddingBottom:'16px'}}>
-            <Button color="primary" onClick={() => {
-              useAddProduct(product);
-            }}>Add to Cart</Button>
-        </CardActions>
-      </Card>
+          </p>
+        </div>
+        <div className="pb-4 flex justify-center items-center">
+          <button className="text-base bg-transparent text-blue hover:text-darkBlue" onClick={() => {
+            useAddProduct(product);
+          }}>
+            ADD TO CART
+          </button>
+        </div>
+      </div>
     )
 
 }

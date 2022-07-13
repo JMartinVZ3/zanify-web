@@ -1,12 +1,11 @@
-import React from 'react';
-import { Container } from '@material-ui/core';
+import type { NextPage } from 'next'
 
-const IndexPage:React.FC = () => {
-
+const Home: NextPage = () => {
   return (
-    <Container maxWidth='lg'>
-    </Container>
-)
-};
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  )
+}
 
-export default IndexPage;
+export default Home
