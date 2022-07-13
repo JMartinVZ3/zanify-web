@@ -12,8 +12,8 @@ export function useCategoriesStorage(): CategoriesStorageService {
   return {
     categories: useSelector((state : any) => state.category.data),
 
-    getCategories: () => {
-      dispatch<any>(GetCategories({userName: "test1", shopName: "volva"}))
+    getCategories: (userName, shopName) => {
+      dispatch<any>(GetCategories({userName: userName, shopName: shopName}))
     },
   }
 }

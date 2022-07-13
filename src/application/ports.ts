@@ -3,13 +3,13 @@ import { Product } from "../domain/product";
 
 export interface ShoppingCartStorageService {
   shoppingCart: Product[];
-  getShoppingCartProducts(): void;
-  addProduct(): void;
-  deleteProduct(): void;
-  quantityProduct(): void;
+  getShoppingCartProducts(categories: Category[]): void;
+  addProduct(product: Product): void;
+  deleteProduct(product: Product): void;
+  quantityProduct(product: Product): void;
 }
 
 export interface CategoriesStorageService {
   categories: Category[];
-  getCategories(): void;
+  getCategories(userName: string, shopName: string): void;
 }

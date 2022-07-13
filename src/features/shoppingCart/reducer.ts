@@ -37,7 +37,11 @@ export const shoppingCartReducer = createReducer(initialState, builder => {
     })
     .addCase(AddProduct, (state, action) => {
 
-        state.data = addProduct(state.data, action.payload);        
+        state.data = addProduct(state.data, action.payload);    
+        
+        console.log(state.data);
+
+        console.log(state.data.length);
 
     })
     .addCase(DeleteProduct, (state, action) => {

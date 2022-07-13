@@ -3,7 +3,7 @@ import { createTheme } from '@material-ui/core';
 export const zanifyTheme = createTheme({
     palette: {
         background: {
-            default: "#4B5563"
+            default: "#E5E7EB"
           },
         primary: {
             main: '#1479FF',

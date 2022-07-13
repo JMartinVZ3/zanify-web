@@ -21,10 +21,8 @@ export const categoryReducer = createReducer(initialState, builder => {
     })
     .addCase(GetCategories.fulfilled, (state, { payload }) => {
       state.pending = false;
-      console.log(state.data);
-      console.log("this is the state");
+
       state.data = payload;
-      console.log(state.data);
     })
     .addCase(GetCategories.rejected, state => {
       state.pending = false;

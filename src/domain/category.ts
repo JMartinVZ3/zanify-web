@@ -4,7 +4,7 @@ export type CategoryTitle = string;
 export type ShopId = string;
 
 export type Category = {
-    id: String;
+    _id: String;
     title: CategoryTitle;
     shop: ShopId;
     products: Product[];

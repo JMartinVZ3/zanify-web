@@ -13,12 +13,9 @@ const Shop = () => {
 
     const classes = useStyles();
 
-    const router = useRouter()
+    const router = useRouter();
+
     const { shopName, userName } = router.query;
-
-    console.log(shopName);
-
-    console.log(userName);
 
     return (
         <div className={classes.container}>
@@ -27,7 +24,7 @@ const Shop = () => {
                 Catálogo
             </Typography>
             <Grow in>
-                <Categories shopName={"volva"} userName={"test1"}/>
+                <Categories userName={userName} shopName={shopName}/>
             </Grow>
         </div>
     )

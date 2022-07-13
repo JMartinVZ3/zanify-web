@@ -20,6 +20,7 @@ import ShoppingCartObject from "../../components/ShoppingCartObject/ShoppingCart
 import { useShoppingCart } from "../../application/shoppingCart";
 
 import { useShoppingCartStorage } from "../../services/shoppingCartAdapter";
+import { useCategoriesStorage } from "../../services/categoriesAdapter";
 
 const validationSchema = yup.object({
   name: yup
@@ -34,9 +35,11 @@ const ShoppingCart = () => {
 
   const { useGetShoppingCartProducts } = useShoppingCart();
 
+  const { categories } = useCategoriesStorage();
+
   useEffect(() => {
 
-    useGetShoppingCartProducts()
+    useGetShoppingCartProducts(categories)
 
   }, []);
 
@@ -213,7 +216,7 @@ const PostOrderForm = ({setSent} : any) => {
         
         const product:ProductsListProps = {
           
-          "product": shoppingCart[i].id,
+          "product": shoppingCart[i]._id,
           "quantity": shoppingCart[i].quantity
         
         }

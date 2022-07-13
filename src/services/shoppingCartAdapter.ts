@@ -16,9 +16,9 @@ export function useShoppingCartStorage(): ShoppingCartStorageService {
   return {
     shoppingCart: useSelector((state : any) => state.shoppingCart.data),
 
-    getShoppingCartProducts: () => dispatch(GetShoppingCartProducts),
-    addProduct: () => dispatch(AddProduct),
-    deleteProduct: () => dispatch(DeleteProduct),
-    quantityProduct: () => dispatch(QuantityProduct)
+    getShoppingCartProducts: (products) => dispatch(GetShoppingCartProducts(products)),
+    addProduct: (product) => dispatch(AddProduct(product)),
+    deleteProduct: (product) => dispatch(DeleteProduct(product)),
+    quantityProduct: (product) => dispatch(QuantityProduct(product))
   }
 }

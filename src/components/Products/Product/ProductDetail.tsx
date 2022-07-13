@@ -25,7 +25,6 @@ const ProductDetail = ({ product }: ProductProps) => {
     return (
         <Card elevation={0}>
         <CardMedia
-          
           component="img"
           height="250"
           image={image}
@@ -41,7 +40,7 @@ const ProductDetail = ({ product }: ProductProps) => {
         </CardContent>
         <CardActions style={{justifyContent: 'center', paddingBottom:'16px'}}>
             <Button color="primary" onClick={() => {
-              useAddProduct()
+              useAddProduct(product);
             }}>Add to Cart</Button>
         </CardActions>
       </Card>

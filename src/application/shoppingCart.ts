@@ -1,30 +1,33 @@
 import { ShoppingCartStorageService } from "./ports";
 import { useShoppingCartStorage } from "../services/shoppingCartAdapter";
 
+import { Product } from "../domain/product";
+import { Category } from "../domain/category";
+
 export function useShoppingCart() {
   const shoppingCarStorageService: ShoppingCartStorageService = useShoppingCartStorage();
 
-  async function useGetShoppingCartProducts() {
+  async function useGetShoppingCartProducts(categories: Category[]) {
 
-    shoppingCarStorageService.getShoppingCartProducts();
-
-  };
-
-  async function useAddProduct() {
-
-    shoppingCarStorageService.addProduct();
+    shoppingCarStorageService.getShoppingCartProducts(categories);
 
   };
 
-  async function useDeleteProduct() {
+  async function useAddProduct(product: Product) {
 
-    shoppingCarStorageService.deleteProduct();
+    shoppingCarStorageService.addProduct(product);
 
   };
 
-  async function useQuantityProduct() {
+  async function useDeleteProduct(product: Product) {
 
-    shoppingCarStorageService.quantityProduct();
+    shoppingCarStorageService.deleteProduct(product);
+
+  };
+
+  async function useQuantityProduct(product: Product) {
+
+    shoppingCarStorageService.quantityProduct(product);
 
   };
 

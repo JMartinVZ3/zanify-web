@@ -6,12 +6,7 @@ export const GetCategories = createAsyncThunk('category/getCategories', async ({
 
     try {
 
-        console.log("haciendo llamada")
-
         const { data } = await api.fetchCategories(shopName, userName);
-
-        console.log("esta es la data")
-        console.log(data);
         
         return data?.categories;
 

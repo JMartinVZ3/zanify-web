@@ -13,15 +13,16 @@ type CategoriesProps = {
     userName: string
 }
 
-const Categories = ({shopName, userName}: CategoriesProps) => {
+const Categories = ({userName, shopName}: CategoriesProps) => {
 
     const { useGetCategories } = useCategories();
 
+
     useEffect(() => {
 
-        useGetCategories();
+        useGetCategories(userName, shopName);
 
-    }, []);
+    }, [userName, shopName]);
 
     const { categories } = useCategoriesStorage();
 

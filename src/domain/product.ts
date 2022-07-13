@@ -2,7 +2,7 @@ export type ProductTitle = string;
 export type CategoryId = string;
 
 export type Product = {
-  id: string;
+  _id: string;
   title: ProductTitle;
   description: string;
   price: number;

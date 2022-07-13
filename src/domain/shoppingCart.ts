@@ -1,35 +1,55 @@
+import { Category } from "./category";
 import { Product } from "./product";
 
-export function getShoppingCartProducts(shoppingCart: Product[], products: Product[]) {
+export function getShoppingCartProducts(shoppingCart: Product[], categories: Category[]) {
   let newShoppingCart: any[] = <any>[];
 
-  for (let i = 0; i < products.length; i++) {
-      const productFind = shoppingCart.filter((product) => product.category === products[i].id)
+  console.log(shoppingCart.length);
+  console.log(categories);
+
+  for (let i = 0; i < categories.length; i++) {
+      const productFind = shoppingCart.filter((product: Product) => product.category === categories[i]._id)
       newShoppingCart = newShoppingCart.concat(productFind);
-      console.log(newShoppingCart);
   }
 
   return newShoppingCart;
 }
 
-export function addProduct(shoppingCart: Product[], product: Product): Product[] {
+export function addProduct(shoppingCart: Product[], productNew: Product): Product[] {
 
   const  data = <Product>{
-    "category": product.category,
-    "description": product.description,
-    "images_url": product.images_url,
-    "price": product.price,
-    "title": product.title,
-    "id": product.id,
+    "category": productNew.category,
+    "description": productNew.description,
+    "images_url": productNew.images_url,
+    "price": productNew.price,
+    "title": productNew.title,
+    "_id": productNew._id,
     "quantity": 1
-}
+  }
 
-  return [...shoppingCart, data];
+  const productFind = shoppingCart.find((element) => 
+    element._id === data._id
+  );
+
+  if (productFind === undefined) {
+
+    return [...shoppingCart, data];
+
+  } else if (productFind.quantity < 9) {
+
+    productFind.quantity++
+    return shoppingCart.map((product) => (product._id === productFind._id ? productFind : product));
+
+  } else {
+
+    return [...shoppingCart];
+
+  }
 }
 
 export function deleteProduct(shoppingCart: Product[], productD: Product): Product[] {
 
-  return shoppingCart.filter((product) => product.id !== productD.id);
+  return shoppingCart.filter((product) => product._id !== productD._id);
 
 }
 
@@ -41,10 +61,10 @@ export function quantityProduct(shoppingCart: Product[], productD: Product): Pro
     "images_url": productD.images_url,
     "price": productD.price,
     "title": productD.title,
-    "id": productD.id,
+    "_id": productD._id,
     "quantity": productD.quantity
   }
 
-  return shoppingCart.map((product) => (product.id === data.id ? data : product));
+  return shoppingCart.map((product) => (product._id === data._id ? data : product));
 
 }
